@@ -1,61 +1,83 @@
 <?php
-$orig_user = '';
-$rec_user = '';
+new Recommend();
 
-if (isset($_GET['username']))
+class Recommend
 {
-	$username = $_GET['username'];
-	$orig_user = $username;
-	$flag = true;
-	$isFound = false;
-	$rec_ctr = 0;
+	private $base;
+	private $recommendation;
 
-	while ($flag)
+	public function __construct()
 	{
-		$isFound = false;
+		$this->recommendation = '';
 
-		$users_file = fopen("usernames.txt", "r") or die('Unable to open file.');
-		while (!feof($users_file))
+		if (isset($_GET['username']))
 		{
-			$old_user = fgets($users_file);
-			$old_user = substr($old_user, 0, -2);
-			if ($username == $old_user)
-			{
-				if ($rec_ctr > 0)
-				{
-					$username = substr($username, 0, -1);
-				}
-				$username .= $rec_ctr;
-				$rec_ctr++;
-				$isFound = true;
-			}
+			$this->base = $this->getBase($_GET['username']);
+			$this->recommendation = $this->recommendUsername($_GET['username']);
 		}
-		fclose($users_file);
-
-		if (!$isFound)
+		if (isset($_GET['action']))
 		{
-			$flag = false;
+			$this->getRecommendation();
 		}
+		$this->index();
 	}
 
-	$rec_user = $username;
+	public function index()
+	{
+		include 'display.php';
+	}
+
+	public function recommendUsername($username)
+	{
+		$flag = true;
+		$ctr = 0;
+
+		while ($flag)
+		{
+			$isFound = false;
+
+			$users_file = fopen("usernames.txt", "r") or die('Unable to open file.');
+			while (!feof($users_file) && !$isFound)
+			{
+				$old_user = fgets($users_file);
+				$old_user = substr($old_user, 0, -2);
+				if ($username == $old_user)
+				{
+					$username = $this->base;
+					$username .= $ctr;
+					$ctr++;
+					$isFound = true;
+				}
+			}
+			$old_user = fgets($users_file);
+			fclose($users_file);
+
+			if (!$isFound)
+			{
+				$flag = false;
+			}
+		}
+
+		return $username;
+	}
+
+	public function getBase($username)
+	{
+		$flag = true;
+		$count = strlen($username);
+		for ($i = 0; $i < $count && $flag; $i++)
+		{
+			if (ctype_digit($username[$i]))
+			{
+				$flag = false;
+				$username = substr($username, 0, ($i));
+			}
+		}
+		return $username;
+	}
+
+	public function getRecommendation()
+	{
+
+	}
 }
-?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Recommendation in picking a username.</title>
-	</head>
-	<body>
-		<form action="recommendation.php" method="GET">
-			<input type="text" id="username" name="username" value="<?php if ($rec_user != '') echo $orig_user; ?>" />
-			<button type="submit">Pick Username</button>
-		</form>
-		<?php if ($rec_user != '') { ?>
-			<label>Username is already taken.</label><br/>
-			<label id="rec-user">Recommended Username: <?= $rec_user ?></label>
-		<?php } else { ?>
-			<label>Username is available.</label>
-		<?php } ?>
-	</body>
-</html>
