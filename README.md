@@ -18,4 +18,5 @@ INSTALLATION
 HOW TO USE
 -------------------------------------------------------------------------------------------------------
 	1. open command line
-	2. type "php <path to your php file> <your desired username input>"
+	2. type "<path to your php.exe> <path to your php file> <your desired username input>"
+		ex: "C:\xampp\php\php.exe C:\xampp\htdocs\elimination\recommendation.php export"
