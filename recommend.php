@@ -24,7 +24,7 @@ else
 function recommendUsername($username, $base)
 {
 	$flag = true;
-	$ctr = 1;
+	$ctr = 0;
 	$usernames = array();
 
 	$users_file = fopen("usernames.txt", "r") or die('Unable to open file.');
@@ -45,7 +45,8 @@ function recommendUsername($username, $base)
 			if ($username == $usernames[$i])
 			{
 				$username = $base;
-				$username .= $ctr;
+				if ($ctr > 0)
+					$username .= $ctr;
 				$ctr++;
 				$isFound = true;
 				break;
