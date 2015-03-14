@@ -18,5 +18,9 @@ INSTALLATION
 HOW TO USE
 -------------------------------------------------------------------------------------------------------
 	1. open command line
-	2. type "<path to your php.exe> <path to your php file> <your desired username input>"
-		ex: "C:\xampp\php\php.exe C:\xampp\htdocs\elimination\recommendation.php export"
+	2. type 
+		for windows: "<path to your php.exe> <path to your php file> <your desired username input>"
+		for linux: "php <path to your php file> <your desired username input>"
+		ex:
+			for windows: C:\xampp\php\php.exe C:\xampp\htdocs\elimination\recommendation.php export
+			for linux : $ php /opt/lampp/htdocs/elimination/recommendation.php export
