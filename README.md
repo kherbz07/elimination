@@ -5,7 +5,7 @@ Username Recommendation System /3/14/15/
 
 USAGE
 -------------------------------------------------------------------------------------------------------
-	Thia system is used to recommend usernames if the user entered a username that already exists.
+	This system is used to recommend usernames if the user enters a username that already exists.
 
 
 INSTALLATION
@@ -17,11 +17,11 @@ INSTALLATION
 
 HOW TO USE
 -------------------------------------------------------------------------------------------------------
-	1. copy "recommendation.php" and "usernames.txt" to your "xampp/php" for windows and "lampp/lib/php" folder for linux
 	1. open command line or terminal
-	2. type 
-		for windows: "php.exe recommend.php <your desired username input>"
+	2. copy "recommend.php" and "usernames.txt" to your "xampp/php" folder for windows and "/opt/lampp/lib/php" folder for linux
+	3. type 
+		for windows: "php recommend.php <your desired username input>"
 		for linux: "php recommend.php <your desired username input>"
 		ex:
-			for windows: php.exe recommend.php export
-			for linux : $ php recommend.php export
+			for windows: php recommend.php export
+			for linux : php recommend.php export
