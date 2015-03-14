@@ -17,10 +17,11 @@ INSTALLATION
 
 HOW TO USE
 -------------------------------------------------------------------------------------------------------
-	1. open command line
+	1. copy "recommendation.php" and "usernames.txt" to your "xampp/php" for windows and "lampp/lib/php" folder for linux
+	1. open command line or terminal
 	2. type 
-		for windows: "<path to your php.exe> <path to your php file> <your desired username input>"
-		for linux: "php <path to your php file> <your desired username input>"
+		for windows: "php.exe recommend.php <your desired username input>"
+		for linux: "php recommend.php <your desired username input>"
 		ex:
-			for windows: C:\xampp\php\php.exe C:\xampp\htdocs\elimination\recommendation.php export
-			for linux : $ php /opt/lampp/htdocs/elimination/recommendation.php export
+			for windows: php.exe recommend.php export
+			for linux : $ php recommend.php export
