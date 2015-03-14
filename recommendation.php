@@ -57,9 +57,6 @@ class Recommend
 			if (!$isFound)
 			{
 				$flag = false;
-				/*$users_file = fopen("usernames.txt", "a") or die('Unable to open file.');
-				fwrite($users_file, " \n". $username);
-				fclose($users_file);*/
 			}
 		}
 
@@ -79,10 +76,5 @@ class Recommend
 			}
 		}
 		return $username;
-	}
-
-	public function getRecommendation()
-	{
-
 	}
 }
