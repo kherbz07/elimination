@@ -3,6 +3,7 @@ new Recommend();
 
 class Recommend
 {
+	private $input;
 	private $base;
 	private $recommendation;
 
@@ -10,21 +11,22 @@ class Recommend
 	{
 		$this->recommendation = '';
 
-		if (isset($_GET['username']))
+		$argc = $_SERVER['argc'];
+		$argv = $_SERVER['argv'];
+
+		if ($argc >= 2)
 		{
-			$this->base = $this->getBase($_GET['username']);
-			$this->recommendation = $this->recommendUsername($_GET['username']);
-		}
-		if (isset($_GET['action']))
-		{
-			$this->getRecommendation();
+			$this->input = $argv[1];
+			$this->base = $this->getBase($this->input);
+			$this->recommendation = $this->recommendUsername($this->input);
 		}
 		$this->index();
 	}
 
 	public function index()
 	{
-		include 'display.php';
+		print('Input: ' . $this->input . "\n");
+		print('Recommendation: ' . $this->recommendation);
 	}
 
 	public function recommendUsername($username)
@@ -55,6 +57,9 @@ class Recommend
 			if (!$isFound)
 			{
 				$flag = false;
+				/*$users_file = fopen("usernames.txt", "a") or die('Unable to open file.');
+				fwrite($users_file, " \n". $username);
+				fclose($users_file);*/
 			}
 		}
 
