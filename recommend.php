@@ -25,8 +25,40 @@ function recommendUsername($username, $base)
 {
 	$flag = true;
 	$ctr = 1;
+	$usernames = array();
 
-	while ($flag)
+	$users_file = fopen("usernames.txt", "r") or die('Unable to open file.');
+	while (!feof($users_file))
+	{
+		$old_user = fgets($users_file);
+		$old_user = preg_replace("/[^A-Za-z0-9]/", '', $old_user);
+		$usernames[] = $old_user;
+	}
+	fclose($users_file);
+
+	while($flag)
+	{
+		$isFound = false;
+
+		for ($i = 0; $i < count($usernames); $i++)
+		{
+			if ($username == $usernames[$i])
+			{
+				$username = $base;
+				$username .= $ctr;
+				$ctr++;
+				$isFound = true;
+				break;
+			}
+		}
+
+		if (!$isFound)
+		{
+			$flag = false;
+		}
+	}
+
+	/*while ($flag)
 	{
 		$isFound = false;
 
@@ -44,14 +76,13 @@ function recommendUsername($username, $base)
 				break;
 			}
 		}
-		$old_user = fgets($users_file);
 		fclose($users_file);
 
 		if (!$isFound)
 		{
 			$flag = false;
 		}
-	}
+	}*/
 
 	return $username;
 }
