@@ -24,7 +24,7 @@ else
 function recommendUsername($username, $base)
 {
 	$flag = true;
-	$ctr = 0;
+	$ctr = 1;
 
 	while ($flag)
 	{
@@ -41,6 +41,7 @@ function recommendUsername($username, $base)
 				$username .= $ctr;
 				$ctr++;
 				$isFound = true;
+				break;
 			}
 		}
 		$old_user = fgets($users_file);
