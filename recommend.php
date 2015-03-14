@@ -58,32 +58,6 @@ function recommendUsername($username, $base)
 		}
 	}
 
-	/*while ($flag)
-	{
-		$isFound = false;
-
-		$users_file = fopen("usernames.txt", "r") or die('Unable to open file.');
-		while (!feof($users_file) && !$isFound)
-		{
-			$old_user = fgets($users_file);
-			$old_user = preg_replace("/[^A-Za-z0-9]/", '', $old_user);
-			if ($username == $old_user)
-			{
-				$username = $base;
-				$username .= $ctr;
-				$ctr++;
-				$isFound = true;
-				break;
-			}
-		}
-		fclose($users_file);
-
-		if (!$isFound)
-		{
-			$flag = false;
-		}
-	}*/
-
 	return $username;
 }
 
